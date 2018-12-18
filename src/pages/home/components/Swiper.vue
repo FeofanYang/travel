@@ -26,11 +26,10 @@ export default {
 
 <style scoped>
 .swiper {
-  height: 1.4rem;
+  height: 1.5rem;
 }
 .swiper img {
   width: 100%;
   height: 100%;
 }
 </style>
-

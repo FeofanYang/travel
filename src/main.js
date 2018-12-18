@@ -3,6 +3,10 @@ import App from './App'
 import router from './router'
 import './assets/styles/reset.css'
 
+// 引入 axios
+import axios from 'axios';
+Vue.prototype.$http = axios;
+
 // 引入 Vant UI
 import Vant from 'vant';
 import 'vant/lib/index.css';

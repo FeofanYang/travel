@@ -22,7 +22,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "~@/assets/styles/var.scss";
 .header {
   display: flex;
   justify-content: space-around;
@@ -30,8 +31,8 @@ export default {
   width: 100%;
   height: 0.8rem;
   font-size: 0.24rem;
-  color: #fff;
-  background-color: #409eff;
+  color: $white;
+  background-color: $blue;
 }
 .header__input {
   padding: 0;
@@ -39,4 +40,3 @@ export default {
   font-size: 0.24rem;
 }
 </style>
-
