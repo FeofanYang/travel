@@ -3,10 +3,12 @@
     <div class="header">
       <van-icon name="arrow-left" class="header__left"/>
       <van-search placeholder="输入城市/景点/游玩内容" v-model="value" class="header__input"/>
-      <div class="header__city">
-        {{this.city}}
-        <i class="el-icon-caret-bottom"></i>
-      </div>
+      <router-link to="/city">
+        <div class="header__city">
+          {{this.city}}
+          <van-icon name="arrow-down"></van-icon>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -32,7 +34,7 @@ export default {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 0.8rem;
+  height: $topBarH;
   font-size: 0.24rem;
   color: $white;
   background-color: $blue;
@@ -41,5 +43,8 @@ export default {
   padding: 0;
   width: 70%;
   font-size: 0.24rem;
+}
+.header__city {
+  color: $white;
 }
 </style>
