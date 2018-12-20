@@ -4,7 +4,7 @@
       <van-icon name="arrow-left" class="header__left"/>
       <van-search placeholder="输入城市/景点/游玩内容" v-model="value" class="header__input"/>
       <div class="header__city">
-        城市
+        {{this.city}}
         <i class="el-icon-caret-bottom"></i>
       </div>
     </div>
@@ -14,6 +14,9 @@
 <script>
 export default {
   name: "HomeHeader",
+  props: {
+    city: String
+  },
   data() {
     return {
       value: null

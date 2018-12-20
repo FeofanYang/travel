@@ -2,7 +2,7 @@
   <div>
     <p class="title">周末去哪</p>
     <ul>
-      <li v-for="item in aRecommendList" :key="item.id">
+      <li v-for="item in list" :key="item.id">
         <div class="item__imgWrap">
           <img :src="item.img" class="item__img">
         </div>
@@ -17,36 +17,9 @@
 <script>
 export default {
   name: "HomeWeekend",
-  data() {
-    return {
-      aRecommendList: [
-        {
-          id: "001",
-          img:
-            "https://dimg05.c-ctrip.com/images/10020q000000gajaeDB6E_C_360_202.jpg",
-          title: "三亚5日自由行(5钻)",
-          desc:
-            "暖冬避霾【销量明星 春节热卖】高星价优4晚·甄选热门度假型酒店暖冬避霾"
-        },
-        {
-          id: "002",
-          img:
-            "https://dimg05.c-ctrip.com/images/10020q000000gajaeDB6E_C_360_202.jpg",
-          title: "三亚5日自由行(5钻)",
-          desc:
-            "暖冬避霾【销量明星 春节热卖】高星价优4晚·甄选热门度假型酒店暖冬避霾"
-        },
-        {
-          id: "003",
-          img:
-            "https://dimg05.c-ctrip.com/images/10020q000000gajaeDB6E_C_360_202.jpg",
-          title: "三亚5日自由行(5钻)",
-          desc:
-            "暖冬避霾【销量明星 春节热卖】高星价优4晚·甄选热门度假型酒店暖冬避霾"
-        }
-      ]
-    };
-  },
+	props:{
+		list: Array
+	}
 };
 </script>
 <style lang="scss" scoped>
