@@ -13,7 +13,7 @@ export default new Router({
 			component: Home
 		},
 		{
-			path: '/city',
+			path: '/City',
 			name: 'City',
 			component: City
 		}
