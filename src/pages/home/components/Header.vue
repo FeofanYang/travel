@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="header">
-      <van-icon name="arrow-left" class="header__left"/>
       <van-search placeholder="输入城市/景点/游玩内容" v-model="value" class="header__input"/>
       <router-link to="/city">
         <div class="header__city">

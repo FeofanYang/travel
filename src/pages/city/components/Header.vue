@@ -16,10 +16,7 @@ export default {
 <style lang="scss" scoped>
 @import "~@/assets/styles/var.scss";
 .van-nav-bar {
-  background-color: $blue;
-  color: $white;
-}
-.van-nav-bar__text {
-  color: $white !important;
+	background-color: $blue;
+	color: $white;
 }
 </style>
