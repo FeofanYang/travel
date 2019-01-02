@@ -11,32 +11,17 @@
         <div class="hot">
           <div class="title">热门城市</div>
           <div class="button-list">
-            <div class="button van-hairline--surround">北京</div>
-            <div class="button van-hairline--surround">北京</div>
-            <div class="button van-hairline--surround">北京</div>
-            <div class="button van-hairline--surround">北京</div>
-            <div class="button van-hairline--surround">北京</div>
-            <div class="button van-hairline--surround">北京</div>
-            <div class="button van-hairline--surround">北京</div>
+            <div
+              v-for="item in hotCities"
+              :key="item.id"
+              class="button van-hairline--surround"
+            >{{item.name}}</div>
           </div>
         </div>
-        <div class="all">
-          <div class="title">A</div>
+        <div v-for="(item,key) in cities" :key="key">
+          <div class="title">{{key}}</div>
           <div class="item-list">
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
-            <div class="item van-hairline--bottom">啊拉尔</div>
+            <div v-for="city in item" :key="city.id" class="item van-hairline--bottom">{{city.name}}</div>
           </div>
         </div>
       </div>
@@ -49,6 +34,10 @@ export default {
   name: "CityList",
   mounted() {
     this.scroll = new BScroll(this.$refs.wrapper);
+  },
+  props: {
+    hotCities: Array,
+    cities: Object
   },
   data() {
     return {

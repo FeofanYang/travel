@@ -1,26 +1,23 @@
 <template>
   <div>
 		<div class="list">
-			<div class="item">A</div>
-			<div class="item">B</div>
-			<div class="item">C</div>
-			<div class="item">D</div>
-			<div class="item">E</div>
-			<div class="item">F</div>
-			<div class="item">G</div>
+			<div v-for="(item,key) in cities" :key="key" class="item">{{key}}</div>
 		</div>
   </div>
 </template>
 <script>
 export default {
   name: "CityAlphabet",
+  props: {
+    cities: Object
+  },
 };
 </script>
 <style lang="scss" scoped>
 @import "~@/assets/styles/var.scss";
 .list{
 	position: absolute;
-	top: 0;
+	top: 90px;
 	right: 0;
 	bottom: 0;
 	width: .4rem;
