@@ -2,8 +2,8 @@
   <div>
     <city-header></city-header>
     <city-search></city-search>
-    <city-list :cities="cities" :hotCities="hotCities"></city-list>
-    <city-alphabet :cities="cities"></city-alphabet>
+    <city-list :cities="cities" :hotCities="hotCities" :char="char"></city-list>
+    <city-alphabet :cities="cities" @chooseChar="handleChooseChar"></city-alphabet>
   </div>
 </template>
 
@@ -23,7 +23,8 @@ export default {
   data() {
     return {
       cities: {},
-      hotCities: []
+      hotCities: [],
+			char: null,
     };
   },
   mounted() {
@@ -46,7 +47,10 @@ export default {
           console.log(error);
         })
         .then(function() {});
-    }
+    },
+		handleChooseChar: function(char){
+			this.char = char;
+		}
   }
 };
 </script>

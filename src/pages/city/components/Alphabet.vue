@@ -1,8 +1,17 @@
 <template>
   <div>
-		<div class="list">
-			<div v-for="(item,key) in cities" :key="key" class="item">{{key}}</div>
-		</div>
+    <div class="list">
+      <div
+        v-for="item in chars"
+        :key="item"
+        :ref="item"
+        class="item"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+        @click="handleCharClick"
+      >{{item}}</div>
+    </div>
   </div>
 </template>
 <script>
@@ -11,6 +20,50 @@ export default {
   props: {
     cities: Object
   },
+  data() {
+    return {
+      isTouchStart: false,
+      startY: 0,
+      timer: null
+    };
+  },
+  computed: {
+    chars() {
+      const chars = [];
+      for (let i in this.cities) {
+        chars.push(i);
+      }
+      return chars;
+    }
+  },
+  updated() {
+    this.startY = this.$refs["A"][0].offsetTop;
+  },
+  methods: {
+    handleCharClick: function(e) {
+      this.$emit("chooseChar", e.target.innerText);
+    },
+    handleTouchStart: function() {
+      this.isTouchStart = true;
+    },
+    handleTouchMove: function(e) {
+      if (this.isTouchStart) {
+        if (this.timer) {
+          clearTimeout(this.timer);
+        }
+        this.timer = setTimeout(() => {
+          const touchY = e.touches[0].clientY - 90;
+          const index = Math.floor((touchY - this.startY) / 20);
+          if (index >= 0 && index <= this.chars.length) {
+            this.$emit("chooseChar", this.chars[index]);
+          }
+        }, 16);
+      }
+    },
+    handleTouchEnd: function() {
+      this.isTouchStart = false;
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

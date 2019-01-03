@@ -18,7 +18,7 @@
             >{{item.name}}</div>
           </div>
         </div>
-        <div v-for="(item,key) in cities" :key="key">
+        <div v-for="(item,key) in cities" :key="key" :ref="key">
           <div class="title">{{key}}</div>
           <div class="item-list">
             <div v-for="city in item" :key="city.id" class="item van-hairline--bottom">{{city.name}}</div>
@@ -37,14 +37,23 @@ export default {
   },
   props: {
     hotCities: Array,
-    cities: Object
+    cities: Object,
+    char: String
   },
   data() {
     return {
       value: null
     };
   },
-  methods: {}
+  methods: {},
+  watch: {
+    char() {
+			if(this.char){
+				const element = this.$refs[this.char][0];
+				this.scroll.scrollToElement(element);
+			}
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
