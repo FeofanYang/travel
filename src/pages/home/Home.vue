@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-header :city="city"></home-header>
+    <home-header></home-header>
     <home-swiper :list="swiperList"></home-swiper>
     <home-icons></home-icons>
     <home-recommend :list="recommendList"></home-recommend>
@@ -25,7 +25,6 @@ export default {
   },
   data() {
     return {
-      city: "武汉",
       swiperList: [
         "//dimg04.c-ctrip.com/images/700s0s000000i2h4nA3C2_1536_307_25.jpg",
         "//dimg04.c-ctrip.com/images/700r0y000000mckmz7E22_1536_307_25.jpg",

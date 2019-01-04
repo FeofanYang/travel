@@ -3,7 +3,12 @@
     <van-search placeholder="请输入搜索关键词" v-model="value" background="#1989fa"></van-search>
     <div class="search-content" ref="search" v-show="value">
       <ul>
-        <li v-for="item in list" :key="item.id" class="van-hairline--bottom">{{item.name}}</li>
+        <li
+          v-for="item in list"
+          :key="item.id"
+          @click="handleCityClick(item.name)"
+          class="van-hairline--bottom"
+        >{{item.name}}</li>
         <li v-show="!list.length">没有搜索到结果</li>
       </ul>
     </div>
@@ -17,7 +22,7 @@ export default {
     cities: Object
   },
   mounted() {
-    this.scroll = new BScroll(this.$refs.search);
+    this.scroll = new BScroll(this.$refs.search, { click: true });
   },
   data() {
     return {
@@ -49,6 +54,12 @@ export default {
         }
         this.list = res;
       }, 100);
+    }
+  },
+  methods: {
+    handleCityClick: function(city) {
+      this.$store.commit("changeCity", city);
+      this.$router.push('/');
     }
   }
 };

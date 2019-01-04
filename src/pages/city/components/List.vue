@@ -5,13 +5,14 @@
         <div class="area">
           <div class="title">您的位置</div>
           <div class="button-list">
-            <div class="button van-hairline--surround">北京</div>
+            <div class="button van-hairline--surround">{{this.$store.state.city}}</div>
           </div>
         </div>
         <div class="hot">
           <div class="title">热门城市</div>
           <div class="button-list">
             <div
+              @click="handleCityClick(item.name)"
               v-for="item in hotCities"
               :key="item.id"
               class="button van-hairline--surround"
@@ -21,7 +22,12 @@
         <div v-for="(item,key) in cities" :key="key" :ref="key">
           <div class="title">{{key}}</div>
           <div class="item-list">
-            <div v-for="city in item" :key="city.id" class="item van-hairline--bottom">{{city.name}}</div>
+            <div
+              v-for="city in item"
+              @click="handleCityClick(city.name)"
+              :key="city.id"
+              class="item van-hairline--bottom"
+            >{{city.name}}</div>
           </div>
         </div>
       </div>
@@ -33,7 +39,7 @@ import BScroll from "better-scroll";
 export default {
   name: "CityList",
   mounted() {
-    this.scroll = new BScroll(this.$refs.wrapper);
+    this.scroll = new BScroll(this.$refs.wrapper, { click: true });
   },
   props: {
     hotCities: Array,
@@ -45,13 +51,18 @@ export default {
       value: null
     };
   },
-  methods: {},
+  methods: {
+    handleCityClick: function(city) {
+      this.$store.commit("changeCity", city);
+      this.$router.push('/');
+    }
+  },
   watch: {
     char() {
-			if(this.char){
-				const element = this.$refs[this.char][0];
-				this.scroll.scrollToElement(element);
-			}
+      if (this.char) {
+        const element = this.$refs[this.char][0];
+        this.scroll.scrollToElement(element);
+      }
     }
   }
 };
