@@ -5,7 +5,7 @@
         <div class="area">
           <div class="title">您的位置</div>
           <div class="button-list">
-            <div class="button van-hairline--surround">{{this.$store.state.city}}</div>
+            <div class="button van-hairline--surround">{{this.city}}</div>
           </div>
         </div>
         <div class="hot">
@@ -36,8 +36,12 @@
 </template>
 <script>
 import BScroll from "better-scroll";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "CityList",
+  computed: {
+    ...mapState(["city"])
+  },
   mounted() {
     this.scroll = new BScroll(this.$refs.wrapper, { click: true });
   },
@@ -53,9 +57,10 @@ export default {
   },
   methods: {
     handleCityClick: function(city) {
-      this.$store.commit("changeCity", city);
-      this.$router.push('/');
-    }
+      this.changeCity(city);
+      this.$router.push("/");
+    },
+    ...mapMutations(["changeCity"])
   },
   watch: {
     char() {

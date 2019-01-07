@@ -4,7 +4,7 @@
       <van-search placeholder="输入城市/景点/游玩内容" v-model="value" class="header__input"/>
       <router-link to="/city">
         <div class="header__city">
-          {{this.$store.state.city}}
+          {{this.curCity}}
           <van-icon name="arrow-down"></van-icon>
         </div>
       </router-link>
@@ -13,8 +13,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "HomeHeader",
+  computed: {
+    ...mapState({
+			curCity: 'city'
+		})
+  },
   data() {
     return {
       value: null
