@@ -14,6 +14,7 @@ import HomeSwiper from "./components/Swiper";
 import HomeIcons from "./components/Icons";
 import HomeRecommend from "./components/Recommend";
 import HomeWeekend from "./components/Weekend";
+import { mapState } from "vuex";
 export default {
   name: "home",
   components: {
@@ -82,16 +83,17 @@ export default {
           desc:
             "暖冬避霾【销量明星 春节热卖】高星价优4晚·甄选热门度假型酒店暖冬避霾"
         }
-      ]
+      ],
+      lastCity: ""
     };
   },
-  mounted() {
-    this.getData();
+  computed: {
+    ...mapState(["city"])
   },
   methods: {
     getData() {
       this.$http
-        .get("/api/index.json")
+        .get("/api/index.json?city=" + this.city)
         .then(function(response) {
           console.log(response);
         })
@@ -99,6 +101,16 @@ export default {
           console.log(error);
         })
         .then(function() {});
+    }
+  },
+  mounted() {
+    this.lastCity = this.city;
+    this.getData();
+  },
+  activated() {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city;
+      this.getData();
     }
   }
 };
