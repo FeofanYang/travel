@@ -2,14 +2,14 @@
   <div>
     <p class="title">热销推荐</p>
     <ul>
-      <li v-for="item in list" :key="item.id" class="item van-hairline--bottom">
+      <router-link tag="li" :to="'/detail/'+item.id" v-for="item in list" :key="item.id" class="item van-hairline--bottom">
         <img :src="item.img" class="item__img">
         <div class="item__info">
           <p v-text="item.title" class="item__title"></p>
           <p v-text="item.desc" class="item__desc"></p>
           <van-button size="small" class="item__btn">查看详情</van-button>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   name: "HomeRecommend",
   props: {
     list: Array
-  },
+  }
 };
 </script>
 
