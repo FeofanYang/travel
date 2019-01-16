@@ -41,6 +41,9 @@ export default {
   },
   activated() {
     window.addEventListener("scroll", this.handleScroll);
+  },
+  deactivated() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
@@ -73,6 +76,7 @@ export default {
   font-size: 0.24rem;
   color: $white;
   background-color: $blue;
+  z-index: 2;
 }
 .header--abs .title,
 .header--abs .left {
